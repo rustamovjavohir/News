@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block title %}
+    News
+{% endblock %}
+
+{% block body %}
+    {% if news_list %}
+        {% for news in news_list %}
+            <div class="border border-1 p-2 m-2">
+                <h2><a href="{% url 'news:news_details_page' news.id %}">{{ news.title }}</a></h2>
+                <img src="{{ news.image.path }}" width="100%" alt="{{ news.image.original_name }}">
+                <a href="{% url 'download' news.image.code %}"><p>{{ news.image.original_name }}</p></a>
+                <p>{{ news.overview | safe }}</p>
+            </div>
+        {% endfor %}
+        <nav aria-label="Page navigation example" class="m-2">
+            <ul class="pagination">
+                {% if news_list.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ news_list.previous_page_number }}" aria-label="Previous">
+                            Previous
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="disabled page-link" href="#" aria-label="Previous">
+                            Previous
+                        </a>
+                    </li>
+                {% endif %}
+                {% for i in news_list.paginator.page_range %}
+                    {% if news_list.number == i %}
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if news_list.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ news_list.next_page_number }}" aria-label="Next">
+                            Next
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="disabled page-link" href="#" aria-label="Next">
+                            Next
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% else %}
+        <div class="alert alert-warning"><h1>No news available</h1></div>
+    {% endif %}
+    <a href="{% url 'news:news_create_page' %}" class="m-2 btn btn-primary">Create Post</a>
+
+{% endblock %}
+

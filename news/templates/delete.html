@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block title %}
+    News
+{% endblock %}
+
+{% block body %}
+    {% if news %}
+        <div class="border border-1 p-2 m-2">
+            <h2>Sure to delete : {{ news.title }}</h2>
+        </div>
+        <form action="{% url 'news:news_delete' news.id %}" method="post">
+            {% csrf_token %}
+            <a href="{% url 'news:news_page' %}" class="m-2 btn btn-warning">Back</a>
+            <input type="submit" class="m-2 btn btn-danger" value="Yes"/>
+        </form>
+    {% else %}
+        <div class="alert alert-warning"><h1>Not Found</h1></div>
+    {% endif %}
+{% endblock %}
+

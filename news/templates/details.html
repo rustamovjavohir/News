@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+{% block title %}
+    News
+{% endblock %}
+
+{% block body %}
+    {% if news %}
+        <div class="border border-1 p-2 m-2">
+            <h2>{{ news.title }}</h2>
+            <p>{{ news.overview | safe }}</p>
+            <img src="{{ news.image.path }}" width="100%" alt="{{ news.image.original_name }}">
+            <a href="{% url 'download' news.image.code %}"><p>{{ news.image.original_name }}</p></a>
+            <p>{{ news.body | safe }}</p>
+            <p>Published At : {{ news.created_at | date }},{{ news.created_at | time }}</p>
+            <p>Likes Count : {{ news.like_set | length }}</p>
+            {% for comment in news.comment_set.all %}
+                <div class="row mx-4">
+                    <div class="col-2">
+                        <a href="{{ comment.created_by.employee.profile_picture.path }}" data-bs-toggle="tooltip" data-bs-html="true"
+                           title="{{ comment.created_by.username }}">
+                            <img src="{{ comment.created_by.employee.profile_picture.path }}"
+                                 alt="{{ comment.created_by.employee.profile_picture.original_name }}"
+                                 style="width: 70px;height: 70px;border-radius: 50%"
+                            >
+                        </a>
+                    </div>
+                    <div class="col-10">
+                        {{ comment.comment }}
+                    </div>
+                </div>
+            {% endfor %}
+            <hr>
+            {% if user.is_authenticated %}
+                <div class="row mx-4">
+                    <div class="col-2">
+                        <a href="{{ user.employee.profile_picture.path }}">
+                            <img src="{{ user.employee.profile_picture.path }}"
+                                 alt="{{ user.employee.profile_picture.original_name }}"
+                                 style="width: 70px;height: 70px;border-radius: 50%"
+                            >
+                        </a>
+                    </div>
+                    <div class="col-10">
+                        <div class="mb-3">
+                            <div class="card">
+                                <div class="card-title bg-primary text-white p-1">
+                                    <label for="comment" class="form-label">Leave a Comment</label>
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" action="{% url 'news:leave_comment' post_id=news.id %}">
+                                        {% csrf_token %}
+                                        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                                        <input type="submit" class="btn btn-primary my-2" value="comment">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+        <a href="{% url 'news:news_page' %}" class="m-2 btn btn-warning">Back</a>
+        <a href="{% url 'news:news_delete_page' news.id %}" class="m-2 btn btn-danger">Delete</a>
+    {% else %}
+        <div class="alert alert-warning"><h1>Not Found</h1></div>
+    {% endif %}
+{% endblock %}
+

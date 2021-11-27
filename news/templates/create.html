@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% block title %}
+    News
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'news:news_create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {#        <div class="mb-3">#}
+        {#            <label for="title" class="form-label">Title</label>#}
+        {#            <input type="text" class="form-control" id="title" name="title">#}
+        {#        </div>#}
+        {##}
+        {#        <div class="mb-3">#}
+        {#            <label for="overview" class="form-label">Overview</label>#}
+        {#            <textarea class="form-control" id="overview" name="overview" rows="3"></textarea>#}
+        {#        </div>#}
+        {##}
+        {#        <div class="mb-3">#}
+        {#            <label for="body" class="form-label">Content</label>#}
+        {#            <textarea class="form-control" id="body" name="body" rows="6"></textarea>#}
+        {#        </div>#}
+        <div class="mb-3">
+            {{ form.title.errors }}
+            <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+            {{ form.title }}
+        </div>
+        <div class="mb-3">
+            <label>Upload
+                <input type="file" name="file">
+            </label>
+        </div>
+        <div class="mb-3">
+            {{ form.overview.errors }}
+            <label for="{{ form.overview.id_for_label }}">{{ form.overview.label }}</label>
+            {{ form.overview }}
+        </div>
+        <div class="mb-3">
+            {{ form.body.errors }}
+            <label for="{{ form.body.id_for_label }}">{{ form.body.label }}</label>
+            {{ form.body }}
+        </div>
+
+
+        <a href="{% url 'news:news_page' %}" class="m-2 btn btn-warning">Back</a>
+        <input type="submit" class="btn btn-success" value="Save"/>
+    </form>
+{% endblock %}
+

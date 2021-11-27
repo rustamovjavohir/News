@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+
+
+{% block title %}
+    Register
+{% endblock %}
+
+
+
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name">
+        </div>
+
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name">
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phone" name="phone">
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="john@mail.ru">
+        </div>
+
+        <div class="mb-3">
+            <label for="file" class="form-label">Profile Pic</label>
+            <input type="file" class="form-control" id="file" name="file">
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="mb-3">
+            <label for="re_password" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="re_password" name="re_password">
+        </div>
+
+        <input type="submit" class="btn btn-success" value="register">
+        <a class="btn btn-primary" href="{% url 'auth:login' %}">Login</a>
+    </form>
+{% endblock %}

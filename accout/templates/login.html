@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+    Login
+{% endblock %}
+
+
+{% block body %}
+    <form method="post">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">User name</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="john">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">User name</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="john">
+        </div>
+        <input type="submit" class="btn btn-primary" value="login">
+
+    </form>
+{% endblock %}
