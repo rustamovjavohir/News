@@ -67,17 +67,30 @@ WSGI_APPLICATION = 'qalampir.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'qalampir',
+#         'USER': 'postgres',
+#         'PASSWORD': '200527',
+#         'HOST': 'localhost',
+#         'POST': '5432',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'qalampir',
-        'USER': 'postgres',
-        'PASSWORD': '200527',
-        'HOST': 'localhost',
+        'NAME': 'ddk2jio8uafoms',
+        'USER': 'hvfhctvsrgxsyr',
+        'PASSWORD': 'f17879b834ec0c9445aaaf9c4ca91908ab9f13058019a00d14a5ce557efc8272',
+        'HOST': 'ec2-52-73-149-159.compute-1.amazonaws.com',
         'POST': '5432',
     }
 }
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
