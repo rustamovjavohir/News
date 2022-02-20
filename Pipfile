@@ -8,6 +8,7 @@ django = "*"
 django-ckeditor = "*"
 python-dotenv = "*"
 psycopg2 = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
