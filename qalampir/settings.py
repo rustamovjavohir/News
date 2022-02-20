@@ -4,7 +4,7 @@ from os.path import exists as path_exists
 from os.path import basename
 from os import getenv
 import os
-import django_heroku
+# import django_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -61,10 +61,20 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'qalampir.wsgi.application'
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'qalampir',
+        'USER': 'postgres',
+        'PASSWORD': '200527',
+        'HOST': 'localhost',
+        'POST': '5432',
     }
 }
 
@@ -97,9 +107,9 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    join_path(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     join_path(BASE_DIR, 'static'),
+# ]
 STATIC_ROOT = join_path(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
@@ -148,4 +158,4 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
