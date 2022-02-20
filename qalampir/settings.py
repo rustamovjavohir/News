@@ -4,7 +4,7 @@ from os.path import exists as path_exists
 from os.path import basename
 from os import getenv
 import os
-# import django_heroku
+import django_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -158,4 +158,4 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 # Activate Django-Heroku.
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
