@@ -3,6 +3,8 @@ from os.path import join as join_path
 from os.path import exists as path_exists
 from os.path import basename
 from os import getenv
+import os
+import django_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -98,6 +100,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     join_path(BASE_DIR, 'static'),
 ]
+STATIC_ROOT = join_path(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join_path(BASE_DIR, 'media')
@@ -143,3 +146,6 @@ EMAIL_HOST_USER = getenv('GMAIL_USER')
 EMAIL_HOST_PASSWORD = getenv('GMAIL_PASSWORD')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
