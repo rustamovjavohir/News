@@ -65,12 +65,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'qalampir.wsgi.application'
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # DATABASES = {
@@ -86,19 +86,19 @@ WSGI_APPLICATION = 'qalampir.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ddk2jio8uafoms',
-        'USER': 'hvfhctvsrgxsyr',
-        'PASSWORD': 'f17879b834ec0c9445aaaf9c4ca91908ab9f13058019a00d14a5ce557efc8272',
-        'HOST': 'ec2-52-73-149-159.compute-1.amazonaws.com',
-        'POST': '5432',
-    }
-}
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'ddk2jio8uafoms',
+#         'USER': 'hvfhctvsrgxsyr',
+#         'PASSWORD': 'f17879b834ec0c9445aaaf9c4ca91908ab9f13058019a00d14a5ce557efc8272',
+#         'HOST': 'ec2-52-73-149-159.compute-1.amazonaws.com',
+#         'POST': '5432',
+#     }
+# }
+#
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
